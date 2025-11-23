@@ -107,57 +107,38 @@ The **Global Solution 2025** project is a full-stack application designed to man
 
 ---
 
-### UML Class Diagram
+## Como Iniciar o Projeto
 
-Below is the UML class diagram representing the database schema:
+### Front-end
+1. Certifique-se de ter o [Node.js](https://nodejs.org/) instalado.
+2. Navegue até o diretório `global-solution-front`.
+3. Execute o comando abaixo para instalar as dependências:
+   ```bash
+   pnpm install
+   ```
+4. Para iniciar o servidor de desenvolvimento, execute:
+   ```bash
+   pnpm dev
+   ```
+5. O front-end estará disponível em [http://localhost:3000](http://localhost:3000).
 
-```plantuml
-@startuml
+### Back-end
+1. Certifique-se de ter o [Java JDK 17+](https://www.oracle.com/java/technologies/javase-downloads.html) e o [Maven](https://maven.apache.org/) instalados.
+2. Navegue até o diretório `global-solution-back`.
+3. Adicione as informações de conexão com o banco de dados no arquivo `.env.example` localizado no diretório `global-solution-back`.
+4. Execute o comando abaixo para compilar o projeto e baixar as dependências:
+   ```bash
+   mvn clean install
+   ```
+5. Para iniciar o servidor, execute:
+   ```bash
+   mvn spring-boot:run
+   ```
+6. O back-end estará disponível em [http://localhost:8080](http://localhost:8080).
 
-class GlobalSolutionUser {
-  - id: String
-  - email: String
-  - password: String
-  - name: String
-  - bio: Text
-  - reputation: int
-  - questionAsked: int
-  - tags: Text
-  - answersAsked: int
-  - answersGiven: int
-}
-
-class GlobalSolutionQuestion {
-  - id: String
-  - authorId: String
-  - title: String
-  - body: Text
-  - tags: Text
-  - answers: Text
-  - bestAnswerId: String
-  - createdAt: String
-  - views: int
-}
-
-class GlobalSolutionAnswer {
-  - id: String
-  - questionId: String
-  - authorId: String
-  - body: Text
-  - votes: int
-  - createdAt: String
-}
-
-' Relações derivadas das FKs
-GlobalSolutionUser "1" -- "0..*" GlobalSolutionQuestion : author (authorId)
-GlobalSolutionUser "1" -- "0..*" GlobalSolutionAnswer   : author (authorId)
-GlobalSolutionQuestion "1" -- "0..*" GlobalSolutionAnswer : answers (questionId)
-
-' Relação opcional de melhor resposta
-GlobalSolutionQuestion "0..1" --> "0..1" GlobalSolutionAnswer : bestAnswer (bestAnswerId)
-
-@enduml
-```
+## Video Pitch
+Confira o vídeo pitch do projeto no link abaixo:
+[Video Pitch - Global Solution 2025-02](https://youtu.be/z-F3tzm740o?si=5IM9lLL7Fb4yP8QX)
 
 ---
 
